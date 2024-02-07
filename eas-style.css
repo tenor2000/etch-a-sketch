@@ -18,7 +18,8 @@ body, html {
     padding: 30px;
     justify-content: center;
     align-items: center;
-    background-image: url("/images/backiee-261709-landscape.jpg");
+    /* background-image: url("/images/backiee-261709-landscape.jpg"); */
+    background-image: url("https://backiee.com/static/wpdb/wallpapers/v2/3840x2160/361709.jpg");
     background-size: cover;
     background-position: center center;
 }
