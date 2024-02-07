@@ -36,7 +36,7 @@ yellowBtn.classList = "button-yellow";
 
 blackBtn.onclick = function () {tileColor = 'black';}
 redBtn.onclick = function () {tileColor = 'red';}
-blueBtn.onclick = function () {tileColor = 'red';}
+blueBtn.onclick = function () {tileColor = 'blue';}
 greenBtn.onclick = function () {tileColor = 'green';}
 yellowBtn.onclick = function () {tileColor = 'yellow';}
 
