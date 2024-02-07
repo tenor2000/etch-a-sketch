@@ -1,0 +1,68 @@
+:root {
+    --sketchbox-width: 960px;
+    --sketchbox-height: 960px;
+    --sketchbook-dimensions: 16;
+}
+
+body {
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: blue;
+    justify-content: center;
+    align-items: center;
+}
+
+.sketchbox {
+    display: flex;
+    width: var(--sketchbox-width);
+    height: var(--sketchbox-height);
+    border: 1px solid black;
+    flex-wrap: wrap;
+}
+
+.sketchbox-tile {
+    background-color: lightgray;
+    /*border: 1px solid black;*/
+    box-sizing: border-box;
+    width: calc((var(--sketchbox-width) / (var(--sketchbook-dimensions))));
+    height: calc((var(--sketchbox-height) / (var(--sketchbook-dimensions))));
+}
+
+button {
+    background-color: white;
+    padding: 8px;
+    min-width: 100px;
+    border-radius: 8px;
+}
+
+.button-blue {
+    background-color: blue;
+    height: 64px;
+}
+
+.button-green {
+    background-color: green;
+    height: 64px;
+}
+
+.button-black {
+    background-color: black;
+    height: 64px;
+}
+
+.button-red {
+    background-color: red;
+    height: 64px;
+}
+
+.button-yellow {
+    background-color: yellow;
+    height: 64px;
+}
