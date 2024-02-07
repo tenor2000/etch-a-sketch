@@ -1,54 +1,50 @@
 // Global Variables
-var gridSize = 32;
+var gridSize = 64;
 var tileColor = 'black';
 
 const container = document.getElementById("container");
+const instruct = document.createElement('p');
+instruct.textContent = 'Sit back, relax and draw!'
+
 const sketchbox = document.createElement("div");
 sketchbox.classList = "sketchbox";
 
-
 const controls = document.createElement("div");
-controls.style.padding = "16px"
+controls.style.padding = "32px"
 const sizeBtn = document.createElement("button")
 sizeBtn.textContent = "Change Size";
 sizeBtn.onclick = function () {newGridSize()}
-const eraseBtn = document.createElement("button")
-eraseBtn.textContent = "Erase";
-eraseBtn.onclick = function () {clearGrid()}
+const clearBtn = document.createElement("button")
+clearBtn.textContent = "Clear";
+clearBtn.onclick = function () {clearGrid()}
 
 controls.appendChild(sizeBtn);
-controls.appendChild(eraseBtn);
+controls.appendChild(clearBtn);
 
 // Color Palette
 const palette = document.createElement("div")
 
-const blackBtn = document.createElement("button")
-const redBtn = document.createElement("button")
-const blueBtn = document.createElement("button")
-const greenBtn = document.createElement("button")
-const yellowBtn = document.createElement("button")
+const paletteColors = ['black', 'red', 'purple', 'blue', 'green', 'yellow', 'orange'];
 
-blackBtn.classList = "button-black";
-redBtn.classList = "button-red";
-blueBtn.classList = "button-blue";
-greenBtn.classList = "button-green";
-yellowBtn.classList = "button-yellow";
+paletteColors.forEach(color => {
+    const button = document.createElement("button");
+    button.classList = `button-${color}`;
+    button.onclick = function () { tileColor = color; };
+    palette.appendChild(button);
+});
 
-blackBtn.onclick = function () {tileColor = 'black';}
-redBtn.onclick = function () {tileColor = 'red';}
-blueBtn.onclick = function () {tileColor = 'blue';}
-greenBtn.onclick = function () {tileColor = 'green';}
-yellowBtn.onclick = function () {tileColor = 'yellow';}
+// final eraser button
+const eraserButton = document.createElement("button");
+eraserButton.classList = `button-erase`;
+eraserButton.onclick = function () { tileColor = 'lightgrey'; };
+palette.appendChild(eraserButton);
 
-palette.appendChild(blackBtn)
-palette.appendChild(redBtn)
-palette.appendChild(blueBtn)
-palette.appendChild(greenBtn)
-palette.appendChild(yellowBtn)
-
+// setting the page
+container.appendChild(instruct)
 container.appendChild(controls);
 container.appendChild(sketchbox);
 container.appendChild(palette);
+
 
 // Functions
 
@@ -58,7 +54,9 @@ function createGrid(size) {
         tileSquare.classList = "sketchbox-tile";
         tileSquare.style.setProperty('--sketchbook-dimensions', size)
         sketchbox.appendChild(tileSquare);
-        tileSquare.addEventListener("mouseover", (event) => drawColor(event.target))
+        tileSquare.addEventListener("mousedown", (event) => startDrawing(event));
+        tileSquare.addEventListener("mouseenter", (event) => drawColor(event));
+        tileSquare.addEventListener("mouseup", stopDrawing);
     }
 }
 
@@ -84,10 +82,22 @@ function clearGrid() {
     createGrid(gridSize);
 }
 
-function drawColor(box) {
-    box.style.backgroundColor = tileColor;
+let isDrawing = false;
+
+function drawColor(event) {
+    if (isDrawing) {
+        event.target.style.backgroundColor = tileColor;
+    }
 }
 
+function startDrawing(event) {
+    isDrawing = true;
+    drawColor(event);
+}
+
+function stopDrawing() {
+    isDrawing = false;
+}
 
 // etch-a-sketch production
 createGrid(gridSize)

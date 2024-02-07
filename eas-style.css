@@ -2,9 +2,11 @@
     --sketchbox-width: 640px;
     --sketchbox-height: 640px;
     --sketchbook-dimensions: 16;
+    --sketchbook-bgcolor: lightgrey;
+    --accent-color: rebeccapurple;
 }
 
-body {
+body, html {
     text-align: center;
     background-color: black;
     color: white;
@@ -14,29 +16,33 @@ body {
     display: flex;
     flex-direction: column;
     padding: 30px;
-    background-color: blue;
     justify-content: center;
     align-items: center;
+    background-image: url("/images/backiee-261709-landscape.jpg");
+    background-size: cover;
+    background-position: center center;
 }
 
 .sketchbox {
     display: flex;
     width: var(--sketchbox-width);
     height: var(--sketchbox-height);
-    border: 1px solid black;
+    border: 10px solid var(--accent-color);
+    border-radius: 8px;
+    opacity: .95;
     flex-wrap: wrap;
 }
 
 .sketchbox-tile {
-    background-color: lightgray;
-    /*border: 1px solid black;*/
+    background-color: var(--sketchbook-bgcolor);
     box-sizing: border-box;
     width: calc((var(--sketchbox-width) / (var(--sketchbook-dimensions))));
     height: calc((var(--sketchbox-height) / (var(--sketchbook-dimensions))));
 }
 
 button {
-    background-color: white;
+    background-color: var(--accent-color);
+    color: lightblue;
     padding: 8px;
     min-width: 100px;
     border-radius: 8px;
@@ -64,5 +70,20 @@ button {
 
 .button-yellow {
     background-color: yellow;
+    height: 64px;
+}
+
+.button-purple {
+    background-color: purple;
+    height: 64px;
+}
+
+.button-orange {
+    background-color: orange;
+    height: 64px;
+}
+
+.button-erase {
+    background-color: var(--sketchbook-bgcolor);
     height: 64px;
 }
